@@ -4,11 +4,24 @@
  * This program is used to test multiple occurance of regular expression in given string.
  */
 
+import org.junit.AfterClass;
+import org.junit.BeforeClass;
 import org.junit.Test;
 import static org.junit.Assert.*;
 
 public class MultipleOccuranceTest {
-  MultipleOccurance mo=new MultipleOccurance();
+  private static  MultipleOccurance mo;
+  @BeforeClass
+  public static void setup()
+  {
+    mo=new MultipleOccurance();
+  }
+  @AfterClass
+  public static void  teardown()
+  {
+    mo=null;
+  }
+  /* If found regex in string return location of regex where they found */
   @Test
   public void foundRegularExpressionInSequenceResultTrue() {
     String input="She sells seashells by the seashore";
@@ -17,6 +30,7 @@ public class MultipleOccuranceTest {
     String[] actualOutput=mo.multipleoccurance(name,input);
     assertArrayEquals(output,actualOutput);
   }
+  /* If not found regex in string return null */
   @Test
   public void notFoundRegularExpressionInSequenceResultNull() {
     String input="Hello";
